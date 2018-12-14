@@ -203,6 +203,7 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        btnTaxa.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnTaxa.setText("Taxa(i)");
         btnTaxa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,8 +353,10 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
         jMontanteRes.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jMontanteRes.setText("Resultado");
 
+        jLabel5.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel5.setText("Juros(J):");
 
+        jJurosRes.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jJurosRes.setText("Resultado");
 
         javax.swing.GroupLayout jPCalculoLayout = new javax.swing.GroupLayout(jPCalculo);
@@ -387,7 +390,7 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
         jPCalculoLayout.setVerticalGroup(
             jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCalculoLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jPrincipalRes))
@@ -537,36 +540,36 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
                     j = parseDouble(txtJuros.getText());
                     n = parseInt(txtPeriodo.getText());
                     m = parseDouble(txtMontante.getText());
+                    //formula do principal (ou capital) aqui
                     break;
                 case 2:
                     p = parseDouble(txtPrincipal.getText());
                     n = parseInt(txtPeriodo.getText());
                     m = parseDouble(txtMontante.getText());
-                    
+                    //for,ula do juros aqui
                     break;
                 case 3:
                     p = parseDouble(txtPrincipal.getText());
                     n = parseInt(txtPeriodo.getText());
                     m = parseDouble(txtMontante.getText());
-                    
+                    //formula da taxa aqui
                     break;
                 case 4:
                     p = parseDouble(txtPeriodo.getText());
                     j = parseDouble(txtJuros.getText());
                     m = parseDouble(txtMontante.getText());
+                    //formula do periodo aqui
                     break;
                 case 5:
                     p = parseDouble(txtPeriodo.getText());
                     j = parseDouble(txtJuros.getText())/100;
                     n = parseInt(txtPeriodo.getText());
                     i = parseDouble(txtTaxa.getText());
-                    m = Math.pow((1 + j), n)*p;
-                    
+                    //Formula do Montante aqui
                     jPrincipalRes.setText(""+p);
                     jJurosRes.setText(""+j*100);
                     jPeriodoRes.setText(""+n);
                     jTaxaRes.setText(""+i);
-                    jMontanteRes.setText(""+m);
                     break;
             }
         }catch(NumberFormatException exception){
