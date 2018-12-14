@@ -30,11 +30,13 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         
         lblTaxa.setVisible(false);
         txtTaxa.setVisible(false);
+        jPercent.setVisible(false);
         
         lblTempo.setVisible(false);
         txtTempo.setVisible(false);
         
-        jCTaxa.setVisible(false);
+        
+        
         
         jPResultado.setVisible(false);
         
@@ -78,7 +80,6 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         txtTaxa = new javax.swing.JTextField();
         txtTempo = new javax.swing.JTextField();
         lblCap = new javax.swing.JLabel();
-        jCTaxa = new javax.swing.JComboBox<>();
         btnTempo = new javax.swing.JButton();
         txtJuros = new javax.swing.JTextField();
         lblTempo = new javax.swing.JLabel();
@@ -88,6 +89,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         btnTaxaExplicado = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        jPercent = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,7 +173,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnMontanteExplicado))
                             .addComponent(jTaxaRes))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPResultadoLayout.setVerticalGroup(
             jPResultadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,14 +248,6 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         lblCap.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         lblCap.setText("Capital: ");
 
-        jCTaxa.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
-        jCTaxa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Anos", "Meses", "Dias" }));
-        jCTaxa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCTaxaActionPerformed(evt);
-            }
-        });
-
         btnTempo.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnTempo.setText("Tempo");
         btnTempo.addActionListener(new java.awt.event.ActionListener() {
@@ -317,33 +311,36 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
             }
         });
 
+        jPercent.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jPercent.setText("%");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnJuros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTempo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTaxa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCap)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCapExplicado))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnJuros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTempo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTaxa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnTempoExplicado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btnTaxaExplicado))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(btnJurosExplicado)))))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnTempoExplicado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(btnTaxaExplicado))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addGap(7, 7, 7)
+                            .addComponent(btnJurosExplicado)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(btnCapExplicado)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTaxa)
@@ -356,9 +353,10 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
                     .addComponent(txtCap)
                     .addComponent(txtJuros)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPercent)
+                        .addGap(23, 23, 23))
                     .addComponent(txtTempo))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -383,7 +381,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
                     .addComponent(lblTaxa)
                     .addComponent(txtTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTaxaExplicado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPercent))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -436,7 +434,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         double j = parseDouble(jJurosRes.getText());
         double t = parseInt(jTempoRes.getText());
         double c = parseDouble(jCapRes.getText());
-        double m = c + (j*t);
+        double m = c + j;
         
         jMontRes.setText(""+m);
         
@@ -450,12 +448,11 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         
         lblTaxa.setVisible(true);
         txtTaxa.setVisible(true);
+        jPercent.setVisible(true);
         
         lblTempo.setVisible(true);
         txtTempo.setVisible(true);
         
-        jCTaxa.setVisible(true);
-        jCTaxa.setVisible(true);
         
         lblJuros.setVisible(true);
         txtJuros.setVisible(true);
@@ -468,12 +465,11 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         
         lblTaxa.setVisible(false);
         txtTaxa.setVisible(false);
+        jPercent.setVisible(false);
         
         lblTempo.setVisible(true);
         txtTempo.setVisible(true);
         
-        jCTaxa.setVisible(false);
-        jCTaxa.setVisible(false);
         
         lblJuros.setVisible(true);
         txtJuros.setVisible(true);
@@ -490,12 +486,11 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         
         lblTaxa.setVisible(true);
         txtTaxa.setVisible(true);
+        jPercent.setVisible(true);
         
         lblTempo.setVisible(false);
         txtTempo.setVisible(false);
         
-        jCTaxa.setVisible(true);
-        jCTaxa.setVisible(true);
         
         lblJuros.setVisible(true);
         txtJuros.setVisible(true);
@@ -512,12 +507,11 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         
         lblTaxa.setVisible(true);
         txtTaxa.setVisible(true);
+        jPercent.setVisible(true);
         
         lblTempo.setVisible(true);
         txtTempo.setVisible(true);
         
-        jCTaxa.setVisible(true);
-        jCTaxa.setVisible(true);
         
         lblJuros.setVisible(false);
         txtJuros.setVisible(false);
@@ -534,7 +528,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
                     i = parseDouble(txtTaxa.getText());
                     t = parseInt(txtTempo.getText());
                     j = j/100;
-                    c = i * t * j * 2;
+                    c = i * t * j;
                     jCapRes.setText(""+c);
                     jTaxaRes.setText(""+i);
                     jTempoRes.setText(""+t);
@@ -545,7 +539,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
                     t = parseInt(txtTempo.getText());
                     c = parseDouble(txtCap.getText());
                     j = j/100;
-                    i = (c * t * j)/2;
+                    i = (c * t * j);
                     jCapRes.setText(""+c);
                     jTaxaRes.setText(""+i);
                     jTempoRes.setText(""+t);
@@ -599,10 +593,6 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "O que são Juros? \n Juros é o rendimento que se obtém quando se empresta dinheiro por um determinado período. \n Os juros são para o credor (aquele que tem algo a receber) "
                 + "\numa compensação pelo tempo que ficará sem utilizar o dinheiro emprestado.");
     }//GEN-LAST:event_btnJurosExplicadoActionPerformed
-
-    private void jCTaxaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTaxaActionPerformed
-
-    }//GEN-LAST:event_jCTaxaActionPerformed
 
     private void btnMontanteExplicadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMontanteExplicadoActionPerformed
                 JOptionPane.showMessageDialog(null, "O que é Montante? \n Montante é um termo utilizado para definir \n a quantidade de dinheiro que uma pessoa física ou jurídica possui,\n uma soma de Capitais");
@@ -663,7 +653,6 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jCTaxa;
     private javax.swing.JLabel jCapRes;
     private javax.swing.JLabel jJurosRes;
     private javax.swing.JLabel jLabel1;
@@ -675,6 +664,7 @@ public class JurosSimplesSDI extends javax.swing.JFrame {
     private javax.swing.JLabel jMontRes;
     private javax.swing.JPanel jPResultado;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jPercent;
     private javax.swing.JLabel jTaxaRes;
     private javax.swing.JLabel jTempoRes;
     private javax.swing.JLabel lblCap;

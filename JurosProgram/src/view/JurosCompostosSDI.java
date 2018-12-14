@@ -1,5 +1,9 @@
 package view;
 
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,18 +15,23 @@ package view;
  * @author Juanl
  */
 public class JurosCompostosSDI extends javax.swing.JFrame {
-     
+     int dt = 0;
     /**
      * Creates new form JurosCompostosSDI
      */
     public JurosCompostosSDI() {
+        
         initComponents();
         lblPrincipal.setVisible(false);
         txtPrincipal.setVisible(false);
         
         lblTaxa.setVisible(false);
         txtTaxa.setVisible(false);
-        jCTaxa.setVisible(false);
+        
+        txtJuros.setVisible(false);
+        lblJuros.setVisible(false);
+        jPercent.setVisible(false);
+
         
         lblPeriodo.setVisible(false);
         txtPeriodo.setVisible(false);
@@ -46,14 +55,13 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnPrincipal = new javax.swing.JButton();
-        btnTaxa = new javax.swing.JButton();
+        btnJuros = new javax.swing.JButton();
         lblTaxa = new javax.swing.JLabel();
         lblMontante = new javax.swing.JLabel();
         txtPrincipal = new javax.swing.JTextField();
         txtTaxa = new javax.swing.JTextField();
         txtPeriodo = new javax.swing.JTextField();
         lblPrincipal = new javax.swing.JLabel();
-        jCTaxa = new javax.swing.JComboBox<>();
         btnPeriodo = new javax.swing.JButton();
         txtMontante = new javax.swing.JTextField();
         lblPeriodo = new javax.swing.JLabel();
@@ -63,6 +71,12 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
         btnExplicacaoPeriodos = new javax.swing.JButton();
         btnExplicacaoMontante = new javax.swing.JButton();
         btnCalcular = new javax.swing.JButton();
+        jPercent = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
+        btnTaxa = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lblJuros = new javax.swing.JLabel();
+        txtJuros = new javax.swing.JTextField();
         jPCalculo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -70,15 +84,18 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        jPrincipalRes = new javax.swing.JLabel();
+        jTaxaRes = new javax.swing.JLabel();
+        jPeriodoRes = new javax.swing.JLabel();
+        jMontanteRes = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jJurosRes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("O que você quer calcular?"));
 
+        btnPrincipal.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnPrincipal.setText("Principal(P)");
         btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,15 +103,18 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
-        btnTaxa.setText("Taxa(I) ");
-        btnTaxa.addActionListener(new java.awt.event.ActionListener() {
+        btnJuros.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        btnJuros.setText("Juros(J)");
+        btnJuros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTaxaActionPerformed(evt);
+                btnJurosActionPerformed(evt);
             }
         });
 
+        lblTaxa.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         lblTaxa.setText("Taxa :");
 
+        lblMontante.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         lblMontante.setText("Montante:");
 
         txtPrincipal.addActionListener(new java.awt.event.ActionListener() {
@@ -103,15 +123,10 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        lblPrincipal.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         lblPrincipal.setText("Principal :");
 
-        jCTaxa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Anos", "Meses", "Dias" }));
-        jCTaxa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCTaxaActionPerformed(evt);
-            }
-        });
-
+        btnPeriodo.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnPeriodo.setText("Períodos (n)");
         btnPeriodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,8 +134,16 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        txtMontante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMontanteActionPerformed(evt);
+            }
+        });
+
+        lblPeriodo.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         lblPeriodo.setText("Periodos :");
 
+        btnMontante.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnMontante.setText("Montante");
         btnMontante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,9 +151,16 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        btnExplicaçãoTaxa.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnExplicaçãoTaxa.setText("?");
+        btnExplicaçãoTaxa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExplicaçãoTaxaActionPerformed(evt);
+            }
+        });
 
         btnExplicaçãoCapital.setBackground(new java.awt.Color(255, 255, 255));
+        btnExplicaçãoCapital.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnExplicaçãoCapital.setText("?");
         btnExplicaçãoCapital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +168,7 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        btnExplicacaoPeriodos.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnExplicacaoPeriodos.setText("?");
         btnExplicacaoPeriodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +176,7 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        btnExplicacaoMontante.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnExplicacaoMontante.setText("?");
         btnExplicacaoMontante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,10 +184,44 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             }
         });
 
+        btnCalcular.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularActionPerformed(evt);
+            }
+        });
+
+        jPercent.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jPercent.setText("%");
+
+        btnVoltar.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
+        btnTaxa.setText("Taxa(i)");
+        btnTaxa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaxaActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("?");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lblJuros.setText("Juros:");
+
+        txtJuros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtJurosActionPerformed(evt);
             }
         });
 
@@ -166,53 +232,56 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnCalcular)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnVoltar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnMontante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnJuros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(btnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnExplicaçãoCapital)
-                                    .addComponent(btnExplicaçãoTaxa, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnPeriodo, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                                .addGap(10, 10, 10)
-                                .addComponent(btnExplicacaoPeriodos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTaxa)
-                            .addComponent(lblPeriodo)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblPrincipal)
-                                .addGap(4, 4, 4))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnMontante, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExplicacaoMontante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblMontante)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                                .addComponent(btnExplicacaoPeriodos)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblPeriodo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnExplicaçãoCapital)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnExplicaçãoTaxa))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(lblPrincipal)
+                                            .addGap(18, 18, 18))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblTaxa)
+                                                .addComponent(lblJuros))
+                                            .addGap(40, 40, 40))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnExplicacaoMontante)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblMontante)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPrincipal, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(txtTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                                .addComponent(txtJuros, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMontante)
-                            .addComponent(txtPeriodo))))
+                                .addComponent(jPercent)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtPeriodo)
+                            .addComponent(txtTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                            .addComponent(txtMontante, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCalcular)
-                .addGap(24, 24, 24))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,45 +293,68 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
                     .addComponent(txtPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExplicaçãoCapital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTaxa)
-                    .addComponent(lblTaxa)
-                    .addComponent(txtTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExplicaçãoTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnJuros)
+                            .addComponent(jPercent)
+                            .addComponent(jButton2)
+                            .addComponent(lblJuros)
+                            .addComponent(txtJuros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnTaxa)
+                            .addComponent(btnExplicaçãoTaxa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTaxa)))
+                    .addComponent(txtTaxa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPeriodo)
+                    .addComponent(btnExplicacaoPeriodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPeriodo)
-                    .addComponent(btnExplicacaoPeriodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15)
+                    .addComponent(txtPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMontante)
                     .addComponent(btnExplicacaoMontante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblMontante)
                     .addComponent(txtMontante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(btnCalcular))
+                .addGap(61, 61, 61)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalcular)
+                    .addComponent(btnVoltar))
+                .addGap(7, 7, 7))
         );
 
         jPCalculo.setBorder(javax.swing.BorderFactory.createTitledBorder("Calculando"));
 
+        jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel1.setText("Capital (C): ");
 
+        jLabel2.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel2.setText("Taxa (I): ");
 
+        jLabel3.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel3.setText("Montante: ");
 
+        jLabel10.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         jLabel10.setText("Periodos :");
 
-        jLabel13.setText("Resultado");
+        jPrincipalRes.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jPrincipalRes.setText("Resultado");
 
-        jLabel14.setText("Resultado");
+        jTaxaRes.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jTaxaRes.setText("Resultado");
 
-        jLabel15.setText("Resultado");
+        jPeriodoRes.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jPeriodoRes.setText("Resultado");
 
-        jLabel16.setText("Resultado");
+        jMontanteRes.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        jMontanteRes.setText("Resultado");
+
+        jLabel5.setText("Juros(J):");
+
+        jJurosRes.setText("Resultado");
 
         javax.swing.GroupLayout jPCalculoLayout = new javax.swing.GroupLayout(jPCalculo);
         jPCalculo.setLayout(jPCalculoLayout);
@@ -278,39 +370,45 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addGroup(jPCalculoLayout.createSequentialGroup()
                         .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5))
                         .addGap(58, 58, 58)
                         .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel13))))
+                            .addComponent(jJurosRes)
+                            .addComponent(jPrincipalRes)
+                            .addComponent(jMontanteRes)
+                            .addComponent(jPeriodoRes)
+                            .addComponent(jTaxaRes))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPCalculoLayout.setVerticalGroup(
             jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPCalculoLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel13))
+                    .addComponent(jPrincipalRes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(11, 11, 11)
+                .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jJurosRes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel14))
+                    .addComponent(jTaxaRes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel15))
+                    .addComponent(jPeriodoRes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPCalculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel16))
+                    .addComponent(jMontanteRes))
                 .addGap(45, 45, 45)
                 .addComponent(jLabel11))
         );
@@ -327,7 +425,7 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPCalculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -340,12 +438,16 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrincipalActionPerformed
 
     private void btnMontanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMontanteActionPerformed
+        dt = 5;
         lblPrincipal.setVisible(true);
         txtPrincipal.setVisible(true);
         
         lblTaxa.setVisible(true);
         txtTaxa.setVisible(true);
-        jCTaxa.setVisible(true);
+        
+        txtJuros.setVisible(true);
+        lblJuros.setVisible(true);
+        jPercent.setVisible(true);
         
         lblPeriodo.setVisible(true);
         txtPeriodo.setVisible(true);
@@ -362,17 +464,18 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExplicacaoMontanteActionPerformed
 
-    private void jCTaxaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTaxaActionPerformed
-        
-    }//GEN-LAST:event_jCTaxaActionPerformed
-
     private void btnPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeriodoActionPerformed
+        dt = 4;
         lblPrincipal.setVisible(true);
         txtPrincipal.setVisible(true);
         
         lblTaxa.setVisible(true);
         txtTaxa.setVisible(true);
-        jCTaxa.setVisible(true);
+        
+        txtJuros.setVisible(true);
+        lblJuros.setVisible(true);
+        jPercent.setVisible(true);
+
         
         lblPeriodo.setVisible(false);
         txtPeriodo.setVisible(false);
@@ -382,12 +485,16 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPeriodoActionPerformed
 
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        dt = 1;
         lblPrincipal.setVisible(false);
         txtPrincipal.setVisible(false);
         
         lblTaxa.setVisible(true);
         txtTaxa.setVisible(true);
-        jCTaxa.setVisible(true);
+        
+        txtJuros.setVisible(true);
+        lblJuros.setVisible(true);
+        jPercent.setVisible(true);
         
         lblPeriodo.setVisible(true);
         txtPeriodo.setVisible(true);
@@ -396,20 +503,24 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
         txtMontante.setVisible(true);
     }//GEN-LAST:event_btnPrincipalActionPerformed
 
-    private void btnTaxaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaxaActionPerformed
+    private void btnJurosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJurosActionPerformed
+        dt = 2;
         lblPrincipal.setVisible(true);
         txtPrincipal.setVisible(true);
         
-        lblTaxa.setVisible(false);
-        txtTaxa.setVisible(false);
-        jCTaxa.setVisible(false);
+        lblTaxa.setVisible(true);
+        txtTaxa.setVisible(true);
+
+        txtJuros.setVisible(false);
+        lblJuros.setVisible(false);
+        jPercent.setVisible(false);  
         
         lblPeriodo.setVisible(true);
         txtPeriodo.setVisible(true);
         
         lblMontante.setVisible(true);
         txtMontante.setVisible(true);
-    }//GEN-LAST:event_btnTaxaActionPerformed
+    }//GEN-LAST:event_btnJurosActionPerformed
 
     private void btnExplicaçãoCapitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExplicaçãoCapitalActionPerformed
         // TODO add your handling code here:
@@ -417,7 +528,92 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         jPCalculo.setVisible(true);
+        double p, m, i, j;
+        int n;
+
+        try{
+            switch(dt){
+                case 1:
+                    j = parseDouble(txtJuros.getText());
+                    n = parseInt(txtPeriodo.getText());
+                    m = parseDouble(txtMontante.getText());
+                    break;
+                case 2:
+                    p = parseDouble(txtPrincipal.getText());
+                    n = parseInt(txtPeriodo.getText());
+                    m = parseDouble(txtMontante.getText());
+                    
+                    break;
+                case 3:
+                    p = parseDouble(txtPrincipal.getText());
+                    n = parseInt(txtPeriodo.getText());
+                    m = parseDouble(txtMontante.getText());
+                    
+                    break;
+                case 4:
+                    p = parseDouble(txtPeriodo.getText());
+                    j = parseDouble(txtJuros.getText());
+                    m = parseDouble(txtMontante.getText());
+                    break;
+                case 5:
+                    p = parseDouble(txtPeriodo.getText());
+                    j = parseDouble(txtJuros.getText())/100;
+                    n = parseInt(txtPeriodo.getText());
+                    i = parseDouble(txtTaxa.getText());
+                    m = Math.pow((1 + j), n)*p;
+                    
+                    jPrincipalRes.setText(""+p);
+                    jJurosRes.setText(""+j*100);
+                    jPeriodoRes.setText(""+n);
+                    jTaxaRes.setText(""+i);
+                    jMontanteRes.setText(""+m);
+                    break;
+            }
+        }catch(NumberFormatException exception){
+            JOptionPane.showMessageDialog(null, "Insira os valores corretamente e preencha todos os campos");
+        }
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        new MainMenu().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnExplicaçãoTaxaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExplicaçãoTaxaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExplicaçãoTaxaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtMontanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMontanteActionPerformed
+
+    private void txtJurosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJurosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJurosActionPerformed
+
+    private void btnTaxaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaxaActionPerformed
+        dt = 3;
+        lblPrincipal.setVisible(true);
+        txtPrincipal.setVisible(true);
+        
+        lblTaxa.setVisible(false);
+        txtTaxa.setVisible(false);
+        
+        txtJuros.setVisible(true);
+        lblJuros.setVisible(true);
+        jPercent.setVisible(true);
+
+        
+        lblPeriodo.setVisible(true);
+        txtPeriodo.setVisible(true);
+        
+        lblMontante.setVisible(true);
+        txtMontante.setVisible(true);
+    }//GEN-LAST:event_btnTaxaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,27 +656,34 @@ public class JurosCompostosSDI extends javax.swing.JFrame {
     private javax.swing.JButton btnExplicacaoPeriodos;
     private javax.swing.JButton btnExplicaçãoCapital;
     private javax.swing.JButton btnExplicaçãoTaxa;
+    private javax.swing.JButton btnJuros;
     private javax.swing.JButton btnMontante;
     private javax.swing.JButton btnPeriodo;
     private javax.swing.JButton btnPrincipal;
     private javax.swing.JButton btnTaxa;
-    private javax.swing.JComboBox<String> jCTaxa;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jJurosRes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jMontanteRes;
     private javax.swing.JPanel jPCalculo;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jPercent;
+    private javax.swing.JLabel jPeriodoRes;
+    private javax.swing.JLabel jPrincipalRes;
+    private javax.swing.JLabel jTaxaRes;
+    private javax.swing.JLabel lblJuros;
     private javax.swing.JLabel lblMontante;
     private javax.swing.JLabel lblPeriodo;
     private javax.swing.JLabel lblPrincipal;
     private javax.swing.JLabel lblTaxa;
+    private javax.swing.JTextField txtJuros;
     private javax.swing.JTextField txtMontante;
     private javax.swing.JTextField txtPeriodo;
     private javax.swing.JTextField txtPrincipal;
